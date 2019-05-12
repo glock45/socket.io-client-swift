@@ -105,7 +105,7 @@ extension Dictionary where Key == String, Value == Any {
 
 extension String {
     func toArray() throws -> [Any] {
-        guard let stringData = data(using: .utf16, allowLossyConversion: false) else { return [] }
+        guard let stringData = data(using: .utf16, allowLossyConversion: true) else { return [] }
         guard let array = try JSONSerialization.jsonObject(with: stringData, options: .mutableContainers) as? [Any] else {
              throw JSONError.notArray
         }
@@ -114,7 +114,7 @@ extension String {
     }
 
     func toDictionary() throws -> [String: Any] {
-        guard let binData = data(using: .utf16, allowLossyConversion: false) else { return [:] }
+        guard let binData = data(using: .utf16, allowLossyConversion: true) else { return [:] }
         guard let json = try JSONSerialization.jsonObject(with: binData, options: .allowFragments) as? [String: Any] else {
             throw JSONError.notNSDictionary
         }

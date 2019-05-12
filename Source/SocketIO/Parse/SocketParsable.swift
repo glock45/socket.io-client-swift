@@ -121,6 +121,10 @@ public extension SocketParsable where Self: SocketManagerSpec & SocketDataBuffer
         if type == .error && !dataArray.hasPrefix("[") && !dataArray.hasSuffix("]") {
             dataArray = "[" + dataArray + "]"
         }
+        
+        if let isoLatin1Data = dataArray.data(using: .isoLatin1), let dataArrayUTF8 = String(data: isoLatin1Data, encoding: .utf8) {
+            dataArray = dataArrayUTF8
+        }
 
         let data = try parseData(dataArray)
 
