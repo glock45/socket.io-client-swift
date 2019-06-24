@@ -27,5 +27,5 @@ Pod::Spec.new do |s|
       'SWIFT_VERSION' => '4.2'
   }
   s.source_files  = "Source/SocketIO/**/*.swift", "Source/SocketIO/*.swift"
-  s.dependency "Starscream", "~> 3.0.6"
+  s.dependency "Starscream", :git => ‘https://github.com/glock45/Starscream.git', :branch => 'crash-fix-_inputStreamCallbackFunc'
 end
